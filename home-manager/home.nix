@@ -14,8 +14,7 @@
   xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty/alacritty.toml;
   xdg.configFile."i3/config".source = ../dotfiles/i3/config;
   xdg.configFile."nvim".source = ../dotfiles/nvim;
-  xdg.configFile."polybar/blocks".source = ../dotfiles/polybar/blocks;
-  xdg.configFile."polybar/launch.sh".source = ../dotfiles/polybar/launch.sh;
+  xdg.configFile."i3blocks".source = ../dotfiles/i3blocks;
 
   home.file.".background-image".source = ../.background-image;
 

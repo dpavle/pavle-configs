@@ -1,0 +1,39 @@
+[public_ip]
+command=curl ip.wtf
+interval=once
+color=#afe09d
+
+[volume]
+command=$SCRIPT_DIR/volume/volume
+#LABEL=♪
+LABEL=VOL:
+interval=once
+signal=10
+color=#9d9e89
+
+[cpu_usage]
+command=$SCRIPT_DIR/cpu_usage/cpu_usage
+interval=10
+LABEL=CPU:
+#min_width=CPU: 100.00%
+T_WARN=50
+T_CRIT=80
+DECIMALS=2
+COLOR_NORMAL=#EBDBB2
+COLOR_WARN=#FFFC00
+COLOR_CRIT=#FF0000
+
+[disk_usage]
+command=python $SCRIPT_DIR/disk_usage/disk_usage
+label=DISK:
+interval=60
+
+[memory]
+command=$SCRIPT_DIR/memory/memory
+label=MEM:
+interval=30
+
+[datetime]
+command=date +"%a %b %d - %R:%S %Z %z"
+interval=1
+
