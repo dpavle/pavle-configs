@@ -114,9 +114,13 @@
   programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  users.groups.pavle = {};
+
   users.users.pavle = {
     isNormalUser = true;
     description = "Pavle";
+    group = "pavle";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
     packages = with pkgs; [
