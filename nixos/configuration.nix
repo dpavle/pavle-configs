@@ -52,7 +52,6 @@
     windowManager.i3 = {
       enable = true;
       extraPackages = with pkgs; [
-        polybar
         rofi
         pywal
         calc
@@ -65,7 +64,6 @@
 	xclip
 	maim
 	xdotool
-	nitrogen
 	picom
         ];
 
