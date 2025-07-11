@@ -11,12 +11,13 @@
 		};
 	};
 
-  xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/alacritty/alacritty.toml;
-  xdg.configFile."i3/config".source = ../dotfiles/i3/config;
-  xdg.configFile."nvim".source = ../dotfiles/nvim;
-  xdg.configFile."i3blocks".source = ../dotfiles/i3blocks;
+  xdg.configFile."alacritty/alacritty.toml".source = ../dotfiles/.config/alacritty/alacritty.toml;
+  xdg.configFile."i3/config".source = ../dotfiles/.config/i3/config;
+  xdg.configFile."nvim".source = ../dotfiles/.config/nvim;
+  xdg.configFile."i3blocks".source = ../dotfiles/.config/i3blocks;
 
   home.file.".background-image".source = ../.background-image;
+  home.file.".zshrc".source = ../dotfiles/.zshrc;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
