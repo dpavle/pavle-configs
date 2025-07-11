@@ -26,19 +26,19 @@ local lspconfig = require('lspconfig')
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig')['pyright'].setup {
+lspconfig['pyright'].setup {
   capabilities = capabilities,
 }
-require('lspconfig')['gopls'].setup {
+lspconfig['gopls'].setup {
   capabilities = capabilities,
 }
-require('lspconfig')['yamlls'].setup {
+lspconfig['yamlls'].setup {
   capabilities = capabilities,
 }
-require('lspconfig')['bashls'].setup {
+lspconfig['bashls'].setup {
   capabilities = capabilities,
 }
----require('lspconfig')['azure_pipelines_ls'].setup {
+---lspconfig['azure_pipelines_ls'].setup {
 ---  capabilities = capabilities,
 ---  root_dir = lspconfig.util.root_pattern(".git", "azure_pipelines", ".azuredevops"),
 ---  settings = {
@@ -58,16 +58,16 @@ require('lspconfig')['bashls'].setup {
 ---  }
 ---}
 
-require('lspconfig')['terraformls'].setup {
+lspconfig['terraformls'].setup {
   capabilities = capabilities
 }
-require('lspconfig')['ansiblels'].setup {
+lspconfig['ansiblels'].setup {
   capabilities = capabilities
 }
-require('lspconfig')['docker_compose_language_service'].setup {
+lspconfig['docker_compose_language_service'].setup {
   capabilities = capabilities
 }
-require('lspconfig')['lua_ls'].setup {
+lspconfig['lua_ls'].setup {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -83,7 +83,7 @@ vim.g.terraform_registry_module_completion = 1
 
 ---------------------------------------------------------------------
 
---vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme nightfox")
 
 --------------------- barbar.nvim keymaps ---------------------------
 
@@ -163,7 +163,7 @@ map('n', '<leader><Tab>', '<Cmd>NvimTreeToggle<CR>', opts)
 
 ----------------------------------------------------------------------
 
-vim.opt.termguicolors = false
+--vim.opt.termguicolors = false
 vim.opt.number = true
 
 vim.opt.tabstop = 8
