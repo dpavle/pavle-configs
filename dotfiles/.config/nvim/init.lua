@@ -1,4 +1,3 @@
-
 -- load packer and it's plugins
 require("plugins")
 --require("coc")
@@ -127,25 +126,43 @@ vim.diagnostic.config({
   float = true,
 })
 
---vim.g.clipboard = {
---  name = 'WslClipboard',
---  copy = {
---    ['+'] = 'clip.exe',
---    ['*'] = 'clip.exe',
---  },
---  paste = {
---    ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
---    ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
---  },
---  cache_enabled = '0',
---}
+--- use Windows clipboard in WSL environment
+
+local virt_environment = io.popen('systemd-detect-virt')
+
+if virt_environment == nil or virt_environment == '' then
+  return
+else
+  local virt_env_out = virt_environment:read('*a')
+
+
+  if virt_env_out ~= 'wsl' then
+    vim.g.clipboard = {
+      name = 'WslClipboard',
+      copy = {
+        ['+'] = 'clip.exe',
+        ['*'] = 'clip.exe',
+      },
+      paste = {
+        ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
+        ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
+      },
+      cache_enabled = '0',
+    }
+  end
+end
+
+virt_environment:close()
+
+--------------------------------------------------------------
 
 vim.api.nvim_create_autocmd("BufEnter", {
   callback = function()
     vim.opt.formatoptions:remove { "c", "r", "o" }
   end,
-  desc = "Disable New Line Comment",
+  desc = "Disable newline comment continuation",
 })
+
 ---------------------------- keymaps ----------------------------------
 
 vim.g.mapleader = " "
@@ -162,8 +179,6 @@ map('t', '<ESC>', '<C-\\><C-n>', opts)
 map('n', '<leader><Tab>', '<Cmd>NvimTreeToggle<CR>', opts)
 
 ----------------------------------------------------------------------
-
---vim.opt.termguicolors = false
 vim.opt.number = true
 
 vim.opt.tabstop = 8
@@ -181,11 +196,76 @@ local function disable_editorconfig()
 end
 vim.api.nvim_create_autocmd("FileType", { pattern = "yaml", callback = disable_editorconfig })
 
+--function Get_visual_selection()
+--  local s_start = vim.fn.getpos("'<")
+--  local s_end = vim.fn.getpos("'>")
+--  local n_lines = math.abs(s_end[2] - s_start[2]) + 1
+--  local lines = vim.api.nvim_buf_get_lines(0, s_start[2] - 1, s_end[2], false)
+--  lines[1] = string.sub(lines[1], s_start[3], -1)
+--  if n_lines == 1 then
+--    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3] - s_start[3] + 1)
+--  else
+--    lines[n_lines] = string.sub(lines[n_lines], 1, s_end[3])
+--  end
+--
+--  return table.concat(lines)
+--end
+--
+--local function replace_visual_selection(replacement)
+--  -- Get start and end positions
+--  local s_pos = vim.fn.getpos("v")
+--  local e_pos = vim.fn.getpos(".")
+--
+--  -- Swap if needed (cursor might be at start or end)
+--  if s_pos[2] > e_pos[2] or (s_pos[2] == e_pos[2] and s_pos[3] > e_pos[3]) then
+--    s_pos, e_pos = e_pos, s_pos
+--  end
+--
+--  -- Replace the selected text
+----  vim.api.nvim_buf_set_text(
+----    0,                      -- current buffer
+----    s_pos[2] - 1,           -- start row
+----    s_pos[3] - 1,           -- start col
+----    e_pos[2] - 1,           -- end row
+----    e_pos[3],               -- end col
+----    { replacement }         -- replacement text
+----  )
+--    vim.api.nvim_buf_set_lines(
+--      0,
+--      s_pos[0],
+--      s_pos[0],
+--      false,
+--      { replacement }
+--    )
+--
+--  -- Exit visual mode
+--  vim.api.nvim_feedkeys(
+--    vim.api.nvim_replace_termcodes("<Esc>", true, false, true),
+--    "x", false
+--  )
+--end
+--
+-- function Ansible_encrypt_str()
+--   local str = Get_visual_selection()
+-- 
+--   local encrypt_string_cmd = io.popen(string.format('python ansible_vault_wrapper.py %s', str))
+-- 
+--   if encrypt_string_cmd == nil or encrypt_string_cmd == '' then
+--   else
+--     local encrypted_string = encrypt_string_cmd:read("*a")
+--     replace_visual_selection('')
+-- 
+--   end
+-- end
+-- 
+-- vim.cmd([[ command! AnsibleEncryptStr lua Ansible_encrypt_str()]])
+-- map('v', '<leader>aes', ":<C-u>:AnsibleEncryptStr<cr>", {silent = true, noremap = true})
+
 -- not sure if this works
---vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
---  pattern = vim.fn.globpath("/home/pavle/AzureRepos/RubySystems/RubyConfig", "**/*.{yaml,yml}", 0, 1),
---  command = "set filetype=yaml.ansible"
---})
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = vim.fn.globpath("/home/pavle/AzureRepos/RubySystems/RubyConfig", "**/*.{yaml,yml}", 0, 1),
+  command = "set filetype=yaml.ansible"
+})
 vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = {"*compose*.yml", "*compose*.yaml"},
   command = "set filetype=yaml.docker-compose"
