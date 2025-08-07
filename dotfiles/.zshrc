@@ -23,7 +23,7 @@ HYPHEN_INSENSITIVE="true"
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-RPROMPT='$(azure_prompt_info)'
+#RPROMPT='$(azure_prompt_info)'
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -41,7 +41,7 @@ HIST_STAMPS="mm/dd/yyyy"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-plugins=(git azure docker docker-compose python ssh zsh-autosuggestions git-auto-status fzf zsh-vi-mode)
+plugins=(git azure zsh-autosuggestions git-auto-status fzf zsh-vi-mode)
 
 # Keep in mind that plugins need to be added before oh-my-zsh.sh is sourced.
 source $ZSH/oh-my-zsh.sh
@@ -50,11 +50,14 @@ source $ZSH/oh-my-zsh.sh
 ############################################ User Configuration ###############################################
 ###############################################################################################################
 
-
 function zvm_after_init() {
 
   # Enable 'fzf' integration
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+  if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach-session -t default || tmux new-session -s default
+  fi
 
 }
 
