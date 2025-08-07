@@ -37,6 +37,9 @@ lspconfig['yamlls'].setup {
 lspconfig['bashls'].setup {
   capabilities = capabilities,
 }
+lspconfig['ts_ls'].setup {
+  capabilities = capabilities,
+}
 ---lspconfig['azure_pipelines_ls'].setup {
 ---  capabilities = capabilities,
 ---  root_dir = lspconfig.util.root_pattern(".git", "azure_pipelines", ".azuredevops"),
@@ -247,17 +250,17 @@ vim.api.nvim_create_autocmd("FileType", { pattern = "yaml", callback = disable_e
 --
 -- function Ansible_encrypt_str()
 --   local str = Get_visual_selection()
--- 
+--
 --   local encrypt_string_cmd = io.popen(string.format('python ansible_vault_wrapper.py %s', str))
--- 
+--
 --   if encrypt_string_cmd == nil or encrypt_string_cmd == '' then
 --   else
 --     local encrypted_string = encrypt_string_cmd:read("*a")
 --     replace_visual_selection('')
--- 
+--
 --   end
 -- end
--- 
+--
 -- vim.cmd([[ command! AnsibleEncryptStr lua Ansible_encrypt_str()]])
 -- map('v', '<leader>aes', ":<C-u>:AnsibleEncryptStr<cr>", {silent = true, noremap = true})
 
