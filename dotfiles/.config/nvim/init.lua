@@ -85,7 +85,7 @@ vim.g.terraform_registry_module_completion = 1
 
 ---------------------------------------------------------------------
 
-vim.cmd("colorscheme nightfox")
+--vim.cmd("colorscheme nightfox")
 
 --------------------- barbar.nvim keymaps ---------------------------
 
