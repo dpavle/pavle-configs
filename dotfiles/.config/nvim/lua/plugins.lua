@@ -56,7 +56,15 @@ return packer.startup(function(use)
     use ('hrsh7th/cmp-path')
     use ('hrsh7th/cmp-cmdline')
     use ('hrsh7th/nvim-cmp')
-
+    use {
+      "royanirudd/clipboard-history.nvim",
+      config = function()
+        require("clipboard-history").setup({
+          max_history = 30,  -- Maximum number of items to store in the clipboard history
+          enable_wsl_features = false,  -- Set to true if you're using WSL and want Windows clipboard integration
+        })
+      end
+    }
     use {"m4xshen/autoclose.nvim", config = function()
       require('autoclose').setup()
     end}
