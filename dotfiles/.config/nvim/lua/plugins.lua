@@ -56,6 +56,8 @@ return packer.startup(function(use)
     use ('hrsh7th/cmp-path')
     use ('hrsh7th/cmp-cmdline')
     use ('hrsh7th/nvim-cmp')
+    use ('hrsh7th/vim-vsnip')
+
     use {
       "royanirudd/clipboard-history.nvim",
       config = function()
@@ -75,11 +77,9 @@ return packer.startup(function(use)
     use ("sindrets/diffview.nvim")
     use ("pearofducks/ansible-vim")
     use ("ntpeters/vim-better-whitespace")
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-      require("toggleterm").setup()
-    end}
     use ("nvim-lua/lsp-status.nvim")
     use ("juliosueiras/vim-terraform-completion")
+    use ("grafana/vim-alloy")
     -- colorschemes
     use ("EdenEast/nightfox.nvim")
 
