@@ -144,6 +144,9 @@ if [[ $(systemd-detect-virt) == 'wsl' ]]; then
   export BROWSER
 fi
 
+# Rust
+. "$HOME/.cargo/env"
+
 export PATH
 
 ###############################################################################################################
