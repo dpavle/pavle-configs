@@ -139,6 +139,11 @@ path+=("${HOME}/.local/bin")
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
+if [[ $(systemd-detect-virt) == 'wsl' ]]; then
+  BROWSER=/opt/firefox
+  export BROWSER
+fi
+
 export PATH
 
 ###############################################################################################################
