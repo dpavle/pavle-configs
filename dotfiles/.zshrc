@@ -55,7 +55,7 @@ function zvm_after_init() {
   # Enable 'fzf' integration
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+  if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
     tmux attach-session -t default || tmux new-session -s default
   fi
 
