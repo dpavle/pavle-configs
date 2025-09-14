@@ -50,6 +50,8 @@ source $ZSH/oh-my-zsh.sh
 ############################################ User Configuration ###############################################
 ###############################################################################################################
 
+LS_COLORS=$(vivid generate solarized-dark)
+
 function zvm_after_init() {
 
   # Enable 'fzf' integration
