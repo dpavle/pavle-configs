@@ -25,25 +25,25 @@ lspconfig['bashls'].setup {
 lspconfig['ts_ls'].setup {
   capabilities = capabilities,
 }
----lspconfig['azure_pipelines_ls'].setup {
----  capabilities = capabilities,
----  root_dir = lspconfig.util.root_pattern(".git", "azure_pipelines", ".azuredevops"),
----  settings = {
----    yaml = {
----      schemas = {
----        --["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/main/service-schema.json"] = {
----          ["file://" .. vim.fn.expand("~/.azure-devops/custom-yaml-schema.json")] = {
----          "azure-pipelines.yml",
----          "pipelines/*.yml",  -- Adjust to match your custom pipeline paths
----          "*/pipelines.yml",
----          "azure_pipelines/*.yml",
----          ".azuredevops/pipelines/**/*.yml",
----          ".azuredevops/pipelines/builds/**/*.yml",
----        }
----      }
----    }
----  }
----}
+--lspconfig['azure_pipelines_ls'].setup {
+--  capabilities = capabilities,
+--  root_dir = lspconfig.util.root_pattern(".git", "azure_pipelines", ".azuredevops"),
+--  settings = {
+--    yaml = {
+--      schemas = {
+--        --["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/main/service-schema.json"] = {
+--          ["file://" .. vim.fn.expand("~/.azure-devops/custom-yaml-schema.json")] = {
+--          "azure-pipelines.yml",
+--          "pipelines/*.yml",  -- Adjust to match your custom pipeline paths
+--          "*/pipelines.yml",
+--          "azure_pipelines/*.yml",
+--          ".azuredevops/pipelines/**/*.yml",
+--          ".azuredevops/pipelines/builds/**/*.yml",
+--        }
+--      }
+--    }
+--  }
+--}
 
 lspconfig['terraformls'].setup {
   capabilities = capabilities

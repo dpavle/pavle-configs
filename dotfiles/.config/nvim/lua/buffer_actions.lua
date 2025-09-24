@@ -7,7 +7,8 @@ vim.api.nvim_create_autocmd("FileType", { pattern = "yaml", callback = disable_e
 
 local ansible_paths = {
   os.getenv('HOME') .. '/AzureRepos/RubySystems/RubyConfig',
-  os.getenv('HOME') .. '/Ansible'
+  os.getenv('HOME') .. '/Ansible',
+  os.getenv('HOME') .. '/Packer/ansible'
 }
 
 for _, path in ipairs(ansible_paths) do
