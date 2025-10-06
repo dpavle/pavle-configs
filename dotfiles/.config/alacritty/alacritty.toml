@@ -50,3 +50,8 @@ foreground = "0xc5c8c6"
 
 [window]
 opacity = 0.88
+decorations = "none"
+dynamic_padding = true
+
+[window.padding]
+y = 10
