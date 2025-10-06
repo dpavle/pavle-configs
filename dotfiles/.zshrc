@@ -137,6 +137,9 @@ path+=("${HOME}/.yarn/bin")
 # Python (pip) user packages
 path+=("${HOME}/.local/bin")
 
+# Brew
+path+=("/home/linuxbrew/.linuxbrew/bin")
+
 # NVM - Node Version Manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
