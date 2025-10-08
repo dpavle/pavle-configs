@@ -41,23 +41,16 @@ packer.init({
 -- Install your plugins here
 return packer.startup(function(use)
     use ("wbthomason/packer.nvim") -- Have packer manage itself
-    use ("tpope/vim-surround")
+
+    -- ui & ux
     use ("nvim-tree/nvim-tree.lua")
     use ("nvim-tree/nvim-web-devicons")
+    use ("romgrk/barbar.nvim")
+    use ("nvim-lualine/lualine.nvim")
+    use ("nvim-lua/lsp-status.nvim")
+
+    -- qol functions and features
     use ("neovim/nvim-lspconfig")
-
-    --use {"neoclide/coc.nvim", branch = 'release'}
-    use {"akinsho/git-conflict.nvim", tag = "*", config = function()
-      require('git-conflict').setup()
-    end}
-
-    use ('hrsh7th/cmp-nvim-lsp')
-    use ('hrsh7th/cmp-buffer')
-    use ('hrsh7th/cmp-path')
-    use ('hrsh7th/cmp-cmdline')
-    use ('hrsh7th/nvim-cmp')
-    use ('hrsh7th/vim-vsnip')
-
     use {
       "royanirudd/clipboard-history.nvim",
       config = function()
@@ -67,21 +60,26 @@ return packer.startup(function(use)
         })
       end
     }
-    use {"m4xshen/autoclose.nvim", config = function()
-      require('autoclose').setup()
-    end}
     use ("iamcco/markdown-preview.nvim")
-    use ("lewis6991/gitsigns.nvim")
-    use ("romgrk/barbar.nvim")
-    use ("nvim-lualine/lualine.nvim")
-    use ("sindrets/diffview.nvim")
-    use ("pearofducks/ansible-vim")
     use ("ntpeters/vim-better-whitespace")
-    use ("nvim-lua/lsp-status.nvim")
+    use ("tpope/vim-surround")
+
+    -- syntax highlighting
+    use ("pearofducks/ansible-vim")
     use ("juliosueiras/vim-terraform-completion")
     use ("grafana/vim-alloy")
-    -- colorschemes
-    use ("EdenEast/nightfox.nvim")
+
+--    use {"m4xshen/autoclose.nvim", config = function()
+--      require('autoclose').setup()
+--    end}
+--    use ("lewis6991/gitsigns.nvim")
+--    use ("sindrets/diffview.nvim")
+    use ('hrsh7th/cmp-nvim-lsp')
+    use ('hrsh7th/cmp-buffer')
+    use ('hrsh7th/cmp-path')
+    use ('hrsh7th/cmp-cmdline')
+    use ('hrsh7th/nvim-cmp')
+    use ('hrsh7th/vim-vsnip')
 
     if PACKER_BOOTSTRAP then
         require("packer").sync()

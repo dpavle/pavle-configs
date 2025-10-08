@@ -23,20 +23,26 @@ vim.g.strip_whitespace_on_save=1
 
 -------------------- general vim/nvim options -------------------------
 
-vim.opt.number = true
-vim.opt.tabstop = 8
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.autoindent = true
-vim.opt.scrolloff = 8 -- start scrolling file before end
-vim.opt.swapfile = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
-vim.opt.cursorline = true
-vim.opt.splitbelow = true
-vim.opt.wrap = false
+local vimopts = {
+  number = true,
+  tabstop = 8,
+  softtabstop = 2,
+  shiftwidth = 2,
+  expandtab = true,
+  smartindent = true,
+  autoindent = true,
+  scrolloff = 8, -- start scrolling file before end
+  swapfile = false,
+  undodir = os.getenv("HOME") .. "/.vim/undodir",
+  undofile = true,
+  cursorline = true,
+  splitbelow = true,
+  wrap = false,
+}
+
+for key, value in pairs(vimopts) do
+	vim.opt[key] = value
+end
 
 -- enable syntax highlighing and filetype specific indentation rules
 vim.cmd('syntax enable')
