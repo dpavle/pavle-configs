@@ -1,6 +1,5 @@
 #[env]
 #TERM = "xterm-256color"
-
 [font]
 size = 10
 
@@ -45,7 +44,7 @@ white = "0x707880"
 yellow = "0xde935f"
 
 [colors.primary]
-background = "0x21201d"
+background = "0x111111"
 foreground = "0xc5c8c6"
 
 [window]
