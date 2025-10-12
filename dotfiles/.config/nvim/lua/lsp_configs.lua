@@ -3,7 +3,17 @@ local lsps = {
   {'rust_analyzer'},
   {'gopls'},
   {'jsonls'},
-  {'yamlls'},
+  {'yamlls',
+    {
+      settings = {
+        yaml = {
+          schemas = {
+            ['https://json.schemastore.org/traefik-v3.json'] = "traefik.yml"
+          }
+        }
+      }
+    }
+  },
   {'bashls'},
   {'ts_ls'},
   {'terraformls'},
