@@ -109,7 +109,7 @@ alias fm="ranger"
 alias gits="git status"
 alias gitcm="git commit -m"
 alias yls="ls -d */ | awk '{ print $9 }' | tr -d '/,' | sed -e 's/^/- /'"
-alias ls="ls -lah --color=auto"
+alias ls="ls -lh --color=auto"
 alias cd="z"
 
 ##################################################################################################################
