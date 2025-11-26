@@ -157,3 +157,6 @@ export PATH
 ###############################################################################################################
 
 eval "$(zoxide init zsh)"
+
+export EDITOR=vim
+export ZVM_VI_EDITOR=vim
