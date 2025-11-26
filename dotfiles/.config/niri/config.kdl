@@ -7,6 +7,12 @@ switch-events {
   lid-close { spawn "swaylock"; }
 }
 
+gestures {
+  hot-corners {
+    off
+  }
+}
+
 // Input device configuration.
 // Find the full list of options on the wiki:
 // https://yalter.github.io/niri/Configuration:-Input
@@ -274,6 +280,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 spawn-sh-at-startup "swaybg -i ~/Downloads/wallpapers/newjeans/nwjns22.jpg"
 //spawn-at-startup "cosmic-ext-alternative-startup"
 
