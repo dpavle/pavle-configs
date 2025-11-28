@@ -6,16 +6,6 @@
 ############################################ User Configuration ###############################################
 ###############################################################################################################
 
-#LS_COLORS=$(vivid generate solarized-dark)
-
-source <(fzf --zsh)
-
-if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
-  tmux attach-session -t default || tmux new-session -s default
-fi
-
-autoload -Uz compinit && compinit
-
 ############################################## User Functions ###################################################
 
 # --- sync SSH configs with Windows (WSL) ------------------------------------------
@@ -114,6 +104,18 @@ export PATH
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+#LS_COLORS=$(vivid generate solarized-dark)
+
+source <(fzf --zsh)
+
+if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
+  tmux attach-session -t default || tmux new-session -s default
+fi
+
+HISTFILE=~/.zsh_history
+
+autoload -Uz compinit && compinit
+
 
 export EDITOR=vim
 export ZVM_VI_EDITOR=vim
