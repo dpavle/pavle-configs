@@ -55,12 +55,14 @@ LS_COLORS=$(vivid generate solarized-dark)
 function zvm_after_init() {
 
   # Enable 'fzf' integration
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  source <(fzf --zsh)
 
   if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
     tmux attach-session -t default || tmux new-session -s default
   fi
 
+  eval "$(zoxide init zsh)"
+  eval $(ssh-agent) > /dev/null
 }
 
 ############################################## User Functions ###################################################
@@ -155,8 +157,3 @@ fi
 export PATH
 
 ###############################################################################################################
-
-eval "$(zoxide init zsh)"
-
-export EDITOR=vim
-export ZVM_VI_EDITOR=vim
