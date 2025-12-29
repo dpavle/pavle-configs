@@ -171,3 +171,14 @@
 [2m2025-11-18T08:52:05.191581Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.
 [2m2025-11-18T09:10:35.946625Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.
 [2m2025-11-18T09:38:27.576151Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.
+[2m2025-12-25T10:48:45.386574Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:48:45.387209Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:48:45.387275Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:48:45.387358Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:48:45.387407Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:48:45.387453Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:54:57.537530Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:54:57.537872Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-25T10:54:57.538015Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Failed to send response: channel closed
+[2m2025-12-26T08:55:25.553065Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.
+[2m2025-12-26T16:52:46.240732Z[0m [31mERROR[0m [2mglazewm[0m[2m:[0m Another instance of the application is already running.

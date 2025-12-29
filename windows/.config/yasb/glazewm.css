@@ -1,0 +1,82 @@
+.glazewm-workspaces {
+    margin: 0;
+}
+
+.glazewm-workspaces .ws-btn {
+    font-size: 14px;
+    background-color: transparent;
+    border: none;
+    padding: 0px 4px 0px 4px;
+    margin: 0 2px 0 2px;
+    color: #CDD6F4;
+}
+
+.glazewm-workspaces .ws-btn.active_populated {
+    color: #C2DAF7;
+    background-color: #727272;
+}
+.glazewm-workspaces .ws-btn.active_empty {
+    color: #7D8B9D;
+    background-color: #727272;
+}
+
+.glazewm-workspaces .ws-btn.populated {
+    color: #C2DAF7;
+}
+
+.glazewm-workspaces .ws-btn.empty {
+    color: #7D8B9D;
+}
+
+.glazewm-workspaces .ws-btn:hover,
+.glazewm-workspaces .ws-btn.populated:hover,
+.glazewm-workspaces .ws-btn.empty:hover {
+    background-color: #727272;
+}
+
+.glazewm-tiling-direction {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+.glazewm-tiling-direction .btn {
+    font-size: 18px;
+    width: 14px;
+    padding: 0 12px 0 12px;
+    color: #CDD6F4;
+    border: none;
+}
+
+.glazewm-tiling-direction .btn:hover {
+    background-color: #727272;
+}
+
+.glazewm-binding-mode {
+    background-color: var(--crust);
+    margin: 4px 0;
+    border-radius: 12px;
+    border: 0;
+}
+
+.glazewm-binding-mode .label {
+    color: var(--text);
+    font-size: 12px;
+}
+
+.glazewm-binding-mode .label-offline {
+    color: var(--subtext0);
+    font-size: 10px;
+}
+
+.glazewm-binding-mode .icon.none {
+    color: var(--blue);
+}
+
+.glazewm-binding-mode .icon.resize {
+    color: var(--yellow);
+}
+
+.glazewm-binding-mode .icon.pause {
+    color: var(--red);
+}

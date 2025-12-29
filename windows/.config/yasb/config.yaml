@@ -54,6 +54,8 @@ bars:
         "weather",
         "microphone",
         "volume",
+        "bluetooth",
+        "battery",
         "notifications",
         "power_menu"
         ]
@@ -83,6 +85,31 @@ widgets:
           on_middle: "toggle_label"
           on_right: "disable_binding_mode"
 
+  bluetooth:
+    type: "yasb.bluetooth.BluetoothWidget"
+    options:
+      label: "<span>{icon}</span> {device_count}"
+      label_alt: "{device_name}"
+      label_no_device: "No devices connected"
+      label_device_separator: ", "
+      max_length: 10
+      max_length_ellipsis: "..."
+      icons:
+        bluetooth_on: "\udb80\udcaf"
+        bluetooth_off: "\udb80\udcb2"
+        bluetooth_connected: "\udb80\udcb1"
+      device_aliases:
+        - name: "T5.0"
+          alias: "\uf025"
+      callbacks:
+        on_left: "exec cmd.exe /c start ms-settings:bluetooth"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
+
+
     # By default binding mode names are fetched from GlazeWM and "display_name" option takes priority over "name".
   glazewm_tiling_direction:
     type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
@@ -111,10 +138,40 @@ widgets:
         left: 4
         bottom: 0
         right: 4
+  battery:
+    type: "yasb.battery.BatteryWidget"
+    options:
+      label: "<span>{icon}</span> {percent}%"
+      label_alt: "<span>{icon}</span> {percent}% | time: {time_remaining}"
+      update_interval: 5000
+      time_remaining_natural: False
+      hide_unsupported: True
+      charging_options:
+        icon_format: "{charging_icon}"
+        blink_charging_icon: true
+        blink_interval: 500
+      status_thresholds:
+        critical: 10
+        low: 25
+        medium: 75
+        high: 95
+        full: 100
+      status_icons:
+        icon_charging: "\uf0e7"
+        icon_critical: "\uf244"
+        icon_low: "\uf243"
+        icon_medium: "\uf242"
+        icon_high: "\uf241"
+        icon_full: "\uf240"
+      label_shadow:
+        enabled: true
+        color: "black"
+        radius: 3
+        offset: [ 1, 1 ]
   home:
     type: "yasb.home.HomeWidget"
     options:
-      label: "<span>\udb81\udf17</span>"
+      label: "<span>\ue70f</span>"
       menu_list:
       - { title: "Home", path: "~" }
       - { title: "Downloads", path: "~\\Downloads" }
@@ -122,7 +179,7 @@ widgets:
       - { title: "Pictures", path: "~\\Pictures" }
       system_menu: true
       power_menu: true
-      blur: false
+      blur: true
   media:
     type: "yasb.media.MediaWidget"
     options:
@@ -184,27 +241,6 @@ widgets:
         color: "black"
         radius: 3
         offset: [ 1, 1 ]
-#  media:
-#    type: "yasb.media.MediaWidget"
-#    options:
-#      label: "{title}"
-#      label_alt: "{artist} - {title}"
-#      max_field_size:
-#        label: 24
-#        label_alt: 24
-#      show_thumbnail: true
-#      controls_only: false
-#      controls_left: false
-#      hide_empty: true
-#      thumbnail_alpha: 80
-#      thumbnail_padding: 24
-#      thumbnail_corner_radius: 0
-#      thumbnail_edge_fade: true
-#      icons:
-#        prev_track: "\udb81\udcae"
-#        next_track: "\udb81\udcad"
-#        play: "\udb81\udc0a"
-#        pause: "\udb80\udfe4"
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
@@ -347,24 +383,25 @@ widgets:
       callbacks:
         on_left: "toggle_volume_menu"
         on_right: "toggle_mute"
+        on_middle: "exec cmd.exe /c start ms-settings:sound"
+      audio_menu:
+        show_apps: false
   microphone:
     type: "yasb.microphone.MicrophoneWidget"
     options:
       label: "<span>{icon}</span> {level}"
-      label_alt: "<span>{icon}</span> {level}%"
       icons:
         normal: "\udb80\udf6c"
         muted: "\udb80\udf6d"
       callbacks:
         on_left: "toggle_mute"
-        on_middle: "toggle_label"
-        on_right: "exec cmd.exe /c start ms-settings:sound"
+        on_middle: "exec cmd.exe /c start ms-settings:sound"
   power_menu:
     type: "yasb.power_menu.PowerMenuWidget"
     options:
       label: "\uf011"
       uptime: True
-      blur: False
+      blur: True
       blur_background: True
       animation_duration: 200
       button_row: 5
@@ -375,18 +412,6 @@ widgets:
         hibernate: ["\uf28e", "Hibernate"]
         sleep: ["\u23fe", "Sleep"]
         cancel: ["", "Cancel"]
-  apps:
-    type: "yasb.applications.ApplicationsWidget"
-    options:
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
-      label: "{data}"
-      app_list:
-        - { icon: "\ueb03", launch: "cmd /c Taskmgr" }
-        - { icon: "\udb80\ude39",launch: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" }
   notifications:
     type: "yasb.notifications.NotificationsWidget"
     options:
