@@ -74,6 +74,7 @@ function wsl_sync_ssh() {
   chmod 700 ~/.ssh
   find ~/.ssh -type d -exec chmod 700 {} +
   find ~/.ssh -type f -exec chmod 600 {} +
+  find ~/.ssh -type f -exec dos2unix -q {} \;
 }
 
 if [[ $(systemd-detect-virt) == 'wsl' ]]; then
@@ -100,6 +101,10 @@ if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
 fi
 
 # -------------------------------------------------------------
+
+get_ssh_hostgroup() {
+  grep $1 ~/.ssh/config -A 1 | grep Host | awk '{print $2}' | sed 's/^M$//'
+}
 
 ##################################################################################################################
 
