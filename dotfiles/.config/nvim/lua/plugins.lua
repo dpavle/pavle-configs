@@ -81,6 +81,15 @@ return packer.startup(function(use)
     use ('hrsh7th/nvim-cmp')
     use ('hrsh7th/vim-vsnip')
 
+    use {
+      'rachartier/tiny-inline-diagnostic.nvim',
+      config = function()
+        require("tiny-inline-diagnostic").setup({
+          preset = "modern"
+        })
+      end
+    }
+
     if PACKER_BOOTSTRAP then
         require("packer").sync()
     end
