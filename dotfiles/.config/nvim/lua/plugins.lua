@@ -80,13 +80,20 @@ return packer.startup(function(use)
     use ('hrsh7th/cmp-cmdline')
     use ('hrsh7th/nvim-cmp')
     use ('hrsh7th/vim-vsnip')
+    use ('MunifTanjim/nui.nvim')
+    use {
+          "esmuellert/codediff.nvim",
+          dependencies = { "MunifTanjim/nui.nvim" },
+          cmd = "CodeDiff",
+    }
 
     use {
       'rachartier/tiny-inline-diagnostic.nvim',
       config = function()
         require("tiny-inline-diagnostic").setup({
-          preset = "modern"
+          preset = "minimal",
         })
+        vim.diagnostic.config({ virtual_text = false })
       end
     }
 

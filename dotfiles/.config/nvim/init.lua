@@ -38,6 +38,7 @@ local vimopts = {
   cursorline = true,
   splitbelow = true,
   wrap = false,
+  termguicolors = true,
 }
 
 for key, value in pairs(vimopts) do
@@ -47,15 +48,6 @@ end
 -- enable syntax highlighing and filetype specific indentation rules
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
-
-vim.diagnostic.config({
-  virtual_text = false,
-  signs = true,
-  update_in_insert = false,
-  underline = true,
-  severity_sort = false,
-  float = true,
-})
 
 --- use Windows clipboard in WSL environment
 
