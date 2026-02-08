@@ -15,7 +15,7 @@ local ansible_paths = {
 for _, path in ipairs(ansible_paths) do
   if vim.fn.getftype(path) == 'dir' then
     vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
-      pattern = vim.fn.globpath(path, "**/*.{yaml,yml}", 0, 1),
+      pattern = vim.fn.globpath(path, "*/*.{yaml,yml}", 0, 1),
       command = "set filetype=yaml.ansible"
     })
   end
