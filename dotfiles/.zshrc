@@ -118,10 +118,13 @@ alias gitcm="git commit -m"
 alias yls="ls -d */ | awk '{ print $9 }' | tr -d '/,' | sed -e 's/^/- /'"
 alias ls="ls -lh --color=auto"
 alias cd="z"
+alias gsteam="gamescope-session; chvt 2; exit"
 
 ##################################################################################################################
 
 #################################################### PATH #########################################################
+
+path+=('~/.local/bin')
 
 # ondemand-tools
 path+=('/opt/ondemand-tools')
@@ -157,8 +160,14 @@ if [[ $(systemd-detect-virt) == 'wsl' ]]; then
 fi
 
 # Rust
-. "$HOME/.cargo/env"
+if [[ -f "$HOME/.cargo/env" ]]; then
+  . "$HOME/.cargo/env"
+fi
 
 export PATH
 
 ###############################################################################################################
+
+if [[ $(tty) == "/dev/tty3" ]]; then
+  gsteam
+fi
