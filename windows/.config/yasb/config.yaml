@@ -51,7 +51,6 @@ bars:
         "glazewm_binding_mode",
         "glazewm_tiling_direction",
         "media",
-        "weather",
         "microphone",
         "volume",
         "bluetooth",
@@ -315,33 +314,6 @@ widgets:
         on_left: "next_layout"
         on_middle: "toggle_monocle"
         on_right: "prev_layout"
-  weather:
-    type: "yasb.weather.WeatherWidget"
-    options:
-      label: "<span>{icon}</span> {temp}"
-      label_alt: "{location}: Min {min_temp}, Max {max_temp}, Humidity {humidity}"
-      api_key: env
-      update_interval: 600
-      hide_decimal: true
-      location: env
-      callbacks:
-        on_left: "toggle_label"
-      icons:
-        sunnyDay: "\ue30d"
-        clearNight: "\ue32b"
-        cloudyDay: "\ue312"
-        cloudyNight: "\ue311"
-        rainyDay: "\ue308"
-        rainyNight: "\ue333"
-        snowyIcyDay: "\ue30a"
-        snowyIcyNight: "\ue335"
-        blizzardDay: "\udb83\udf36"
-        blizzardNight: "\udb83\udf36"
-        foggyDay: "\ue303"
-        foggyNight: "\ue346"
-        thunderstormDay: "\ue30f"
-        thunderstormNight: "\ue338"
-        default: "\uebaa"
   language:
     type: "yasb.language.LanguageWidget"
     options:
