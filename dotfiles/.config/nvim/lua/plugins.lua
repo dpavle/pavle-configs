@@ -87,6 +87,17 @@ return packer.startup(function(use)
           cmd = "CodeDiff",
     }
 
+    use ("nvim-lua/plenary.nvim")
+    use ("nvim-telescope/telescope.nvim")
+    use ("mfussenegger/nvim-dap")
+    use {
+      "GustavEikaas/easy-dotnet.nvim",
+      dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", },
+      config = function()
+        require("easy-dotnet").setup()
+      end
+    }
+
     use {
       'rachartier/tiny-inline-diagnostic.nvim',
       config = function()

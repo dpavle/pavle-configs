@@ -164,6 +164,11 @@ if [[ -f "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
 
+if [[ -d "$HOME/.dotnet" ]]; then
+  DOTNET_ROOT="$HOME/.dotnet"
+  path+=("$DOTNET_ROOT" "$DOTNET_ROOT/tools")
+fi
+
 export PATH
 
 ###############################################################################################################
