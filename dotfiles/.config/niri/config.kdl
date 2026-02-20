@@ -27,7 +27,6 @@ input {
             variant ",latin,"
             options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
 
-
             // If this section is empty, niri will fetch xkb settings
             // from org.freedesktop.locale1. You can control these using
             // localectl set-x11-keymap.
@@ -281,12 +280,23 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 spawn-at-startup "waybar"
+
+// https://github.com/niri-wm/niri/wiki/Important-Software#authentication-agent
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
+
+// Idle lock
+spawn-sh-at-startup "swayidle -w timeout 180 'swaylock'"
+
+// Set wallpaper
 spawn-sh-at-startup "swaybg -i ~/Downloads/wallpapers/newjeans/nwjns22.jpg"
+
+// Niri + Cosmic
 //spawn-at-startup "cosmic-ext-alternative-startup"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
+
+///////////////////////////////////////////////////////////////////////////////////////
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -331,6 +341,12 @@ window-rule {
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
+}
+
+// Move Steam notifications to bottom right
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=10 y=10 relative-to="bottom-right"
 }
 
 window-rule {
@@ -384,12 +400,13 @@ binds {
     Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+B hotkey-overlay-title="Run Browser: Firefox" { spawn "firefox"; }
-    //Ctrl+Shift+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn-sh "swaylock -C ~/.local/share/themes/dpavle-swaylock/swaylock -i ~/Downloads/wallpapers/newjeans/nwjns22-blurred.jpg"; }
+    Mod+F hotkey-overlay-title="Run file manager: PCManFM" { spawn "pcmanfm"; }
+    Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
     // For example, this is a standard bind to toggle the screen reader (orca).
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+    // Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     // Example volume keys mappings for PipeWire & WirePlumber.
     // The allow-when-locked=true property makes them work even when the session is locked.
@@ -409,7 +426,6 @@ binds {
     // You can also move the mouse into the top-left hot corner,
     // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
-
     Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
@@ -567,7 +583,7 @@ binds {
     // Mod+R { switch-preset-column-width-back; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
+    Mod+M { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
