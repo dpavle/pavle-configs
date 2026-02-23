@@ -90,10 +90,10 @@ alias usage="du -h --max-depth 1"
 # git shortcuts
 alias gits="git status"
 alias gitcm="git commit -m"
+alias gitcam="git commit -am"
 
 alias cd="z" # replace 'cd' with 'zoxide'
 alias vim="nvim" # replace regular vim with neovim
-
 
 ######################################################################################################
 ############################################ PATH changes ############################################
