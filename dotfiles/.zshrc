@@ -50,8 +50,6 @@ source $ZSH/oh-my-zsh.sh
 ############################################ User configuration ############################################
 ############################################################################################################
 
-LS_COLORS=$(vivid generate solarized-dark)
-
 function zvm_after_init() {
 
   # Enable 'fzf' integration
@@ -129,16 +127,12 @@ path+=("/home/linuxbrew/.linuxbrew/bin")
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
-if [[ $(systemd-detect-virt) == 'wsl' ]]; then
-  BROWSER=/opt/firefox
-  export BROWSER
-fi
-
 # Rust
 if [[ -f "$HOME/.cargo/env" ]]; then
   . "$HOME/.cargo/env"
 fi
 
+# .NET
 if [[ -d "$HOME/.dotnet" ]]; then
   DOTNET_ROOT="$HOME/.dotnet"
   path+=("$DOTNET_ROOT" "$DOTNET_ROOT/tools")
@@ -149,6 +143,8 @@ export PATH
 #######################################################################################################
 ############################################ Miscellaneous ############################################
 #######################################################################################################
+
+LS_COLORS=$(vivid generate molokai)
 
 # Run 'ls' after every 'cd'
 function list_all() {
@@ -161,6 +157,14 @@ fi
 
 # https://www.reddit.com/r/linux_gaming/comments/1jh2sdr/i_automated_switching_to_steam_gamemode_and_back/
 alias gsteam="gamescope-session; chvt 2; exit"
+
+
+# WSL <-> Windows browser integration
+if [[ $(systemd-detect-virt) == 'wsl' ]]; then
+  BROWSER=/opt/firefox
+  export BROWSER
+fi
+
 if [[ $(tty) == "/dev/tty3" ]]; then
   gsteam
 fi
