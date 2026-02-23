@@ -1,6 +1,6 @@
-#################################################################################################################
-########################################## Standard configuration ###############################################
-#################################################################################################################
+########################################################################################################################
+############################################ Standard ZSH/OMZ configuration ############################################
+########################################################################################################################
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
@@ -46,9 +46,9 @@ plugins=(git azure zsh-autosuggestions git-auto-status fzf zsh-vi-mode)
 # Keep in mind that plugins need to be added before oh-my-zsh.sh is sourced.
 source $ZSH/oh-my-zsh.sh
 
-###############################################################################################################
-############################################ User Configuration ###############################################
-###############################################################################################################
+############################################################################################################
+############################################ User configuration ############################################
+############################################################################################################
 
 LS_COLORS=$(vivid generate solarized-dark)
 
@@ -57,77 +57,52 @@ function zvm_after_init() {
   # Enable 'fzf' integration
   source <(fzf --zsh)
 
+  # Attach to existing 'default' TMUX session or spawn a new one if it doesn't exist
   if command -v tmux &> /dev/null && [ -z "$TMUX" ] && [ -z "$SSH_CONNECTION" ]; then
     tmux attach-session -t default || tmux new-session -s default
   fi
 
+  # Enable 'zoxide' integration
   eval "$(zoxide init zsh)"
+
+  # Start 'ssh-agent'
   eval $(ssh-agent) > /dev/null
 }
 
-############################################## User Functions ###################################################
+################################################################################################################
+############################################ User-defined functions ############################################
+################################################################################################################
 
-# --- sync SSH configs with Windows (WSL) ------------------------------------------
-
-function wsl_sync_ssh() {
-  rsync -a --exclude='known_hosts' /mnt/c/Users/pavle.dencic/.ssh/* ~/.ssh/
-  chmod 700 ~/.ssh
-  find ~/.ssh -type d -exec chmod 700 {} +
-  find ~/.ssh -type f -exec chmod 600 {} +
-  find ~/.ssh -type f -exec dos2unix -q {} \;
-}
-
-if [[ $(systemd-detect-virt) == 'wsl' ]]; then
-  wsl_sync_ssh
-  #wsl_sync_hosts -- (re)implemented as a script in /usr/local/bin/wsl_sync_hosts due to issues with permissions
-fi
-
-# -----------------------------------------------------------------------------------
-
+# Generate a random string of 'n' length
 function genstr() {
   head /dev/urandom | tr -dc A-Za-z0-9 | head -c $1
   echo ''
 }
 
-# --- run ls after every cd ------------------------------------
+######################################################################################################
+############################################ User aliases ############################################
+######################################################################################################
 
-function list_all() {
-  emulate -L zsh
-  ls
-}
-
-if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
-  chpwd_functions=(${chpwd_functions[@]} "list_all")
-fi
-
-# -------------------------------------------------------------
-
-get_ssh_hostgroup() {
-  grep $1 ~/.ssh/config -A 1 | grep Host | awk '{print $2}' | sed 's/^M$//'
-}
-
-##################################################################################################################
-
-################################################## Aliases #######################################################
-
-alias usage="du -h --max-depth 1"
-alias vim="nvim"
+# shortcuts
 alias fm="ranger"
+alias usage="du -h --max-depth 1"
+
+# git shortcuts
 alias gits="git status"
 alias gitcm="git commit -m"
-alias yls="ls -d */ | awk '{ print $9 }' | tr -d '/,' | sed -e 's/^/- /'"
-alias ls="ls -lh --color=auto"
-alias cd="z"
-alias gsteam="gamescope-session; chvt 2; exit"
 
-##################################################################################################################
+alias cd="z" # replace 'cd' with 'zoxide'
+alias vim="nvim" # replace regular vim with neovim
 
-#################################################### PATH #########################################################
+
+######################################################################################################
+############################################ PATH changes ############################################
+######################################################################################################
 
 path+=('~/.local/bin')
 
-# ondemand-tools
-path+=('/opt/ondemand-tools')
+# /opt/*-tools
+path+=('/opt/ondemand-tools' '/opt/ssh-tools')
 
 # Golang
 path+=('/usr/local/go/bin')
@@ -171,10 +146,24 @@ fi
 
 export PATH
 
-###############################################################################################################
+#######################################################################################################
+############################################ Miscellaneous ############################################
+#######################################################################################################
 
+# Run 'ls' after every 'cd'
+function list_all() {
+  emulate -L zsh
+  ls
+}
+if [[ ${chpwd_functions[(r)list_all]} != "list_all" ]];then
+  chpwd_functions=(${chpwd_functions[@]} "list_all")
+fi
+
+# https://www.reddit.com/r/linux_gaming/comments/1jh2sdr/i_automated_switching_to_steam_gamemode_and_back/
+alias gsteam="gamescope-session; chvt 2; exit"
 if [[ $(tty) == "/dev/tty3" ]]; then
   gsteam
 fi
 
-task list
+# https://taskwarrior.org/
+[[ -n $(which task) ]] && task list
