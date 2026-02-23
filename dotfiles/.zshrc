@@ -176,3 +176,5 @@ export PATH
 if [[ $(tty) == "/dev/tty3" ]]; then
   gsteam
 fi
+
+task list
