@@ -170,4 +170,4 @@ if [[ $(tty) == "/dev/tty3" ]]; then
 fi
 
 # https://taskwarrior.org/
-[[ -n $(which task) ]] && task list
+[[ -n $(which task 2>/dev/null) ]] && task list
