@@ -2,6 +2,7 @@
 require("plugins")
 require("lsp_configs")
 require("buffer_actions")
+require("filetypes")
 require("evil_lualine")
 require("nvim_cmp")
 require("nvim_tree")
