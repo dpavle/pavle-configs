@@ -63,6 +63,8 @@ return packer.startup(function(use)
     use ("iamcco/markdown-preview.nvim")
     use ("ntpeters/vim-better-whitespace")
     use ("tpope/vim-surround")
+    use ("mfussenegger/nvim-dap")
+
 
     -- syntax highlighting
     use ("pearofducks/ansible-vim")
@@ -74,12 +76,16 @@ return packer.startup(function(use)
 --    end}
 --    use ("lewis6991/gitsigns.nvim")
 --    use ("sindrets/diffview.nvim")
+
+    -- nvim-cmp
+    use ('hrsh7th/nvim-cmp')
     use ('hrsh7th/cmp-nvim-lsp')
     use ('hrsh7th/cmp-buffer')
     use ('hrsh7th/cmp-path')
     use ('hrsh7th/cmp-cmdline')
-    use ('hrsh7th/nvim-cmp')
     use ('hrsh7th/vim-vsnip')
+
+    -- dependencies for codediff
     use ('MunifTanjim/nui.nvim')
     use {
           "esmuellert/codediff.nvim",
@@ -87,9 +93,9 @@ return packer.startup(function(use)
           cmd = "CodeDiff",
     }
 
+    -- dependencies for easy-dotnet
     use ("nvim-lua/plenary.nvim")
     use ("nvim-telescope/telescope.nvim")
-    use ("mfussenegger/nvim-dap")
     use {
       "GustavEikaas/easy-dotnet.nvim",
       dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim", },

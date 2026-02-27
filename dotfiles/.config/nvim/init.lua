@@ -1,7 +1,7 @@
 -- load packer and it's plugins
 require("plugins")
 require("lsp_configs")
-require("buffer_actions")
+require("autocmds")
 require("filetypes")
 require("evil_lualine")
 require("nvim_cmp")
@@ -50,34 +50,6 @@ end
 vim.cmd('syntax enable')
 vim.cmd('filetype plugin indent on')
 
---- use Windows clipboard in WSL environment
-
-local virt_environment = io.popen('systemd-detect-virt')
-
-if virt_environment == nil or virt_environment == '' then
-  return
-else
-  local virt_env_out = virt_environment:read('*a')
-
-
-  if virt_env_out ~= 'wsl' then
-    vim.g.clipboard = {
-      name = 'WslClipboard',
-      copy = {
-        ['+'] = 'clip.exe',
-        ['*'] = 'clip.exe',
-      },
-      paste = {
-        ['+'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
-        ['*'] = 'powershell.exe -NoLogo -NoProfile -c [Console]::Out.Write($(Get-Clipboard -Raw).toString().replace("`r",""))',
-      },
-      cache_enabled = '0',
-    }
-  end
-end
-
-virt_environment:close()
-
 -----------------------------------------------------------------------
 
 ---------------------------- keymaps ----------------------------------
@@ -94,7 +66,6 @@ map("x", "<leader>p", "\"_dP", opts)
 map('n', '<leader><Tab>', '<Cmd>NvimTreeToggle<CR>', opts)
 
 --- barbar.nvim
--- keymaps for switching tabs with Alt-[0-9]
 -- Move to previous/next
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
@@ -119,4 +90,3 @@ map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 
 ----------------------------------------------------------------------
-
