@@ -100,7 +100,7 @@ alias vim="nvim" # replace regular vim with neovim
 path+=('~/.local/bin')
 
 # /opt/*-tools
-path+=('/opt/ondemand-tools' '/opt/ssh-tools')
+path+=('/opt/ondemand-tools' '/opt/ssh-tools' '/opt/azdo-tools')
 
 # Golang
 path+=('/usr/local/go/bin')
