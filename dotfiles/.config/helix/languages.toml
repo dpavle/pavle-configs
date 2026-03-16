@@ -1,0 +1,16 @@
+
+[[language]]
+name = "python"
+language-servers = ["ty"]
+
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
+[language-server.ansible-language-server]
+command = "ansible-language-server"
+args = ["--stdio"]
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
