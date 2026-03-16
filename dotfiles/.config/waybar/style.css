@@ -162,9 +162,12 @@ button:hover {
 label:focus {
 }
 
-#pulseaudio.sink.muted {
+/*#pulseaudio.sink.muted {
     color: #696969;
-}
+}*/
+/*#pulseaudio.source.muted {
+    color: #696969;
+}*/
 
 #wireplumber {
     color: #ffffff;
@@ -193,14 +196,12 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    
 }
 
 #idle_inhibitor {
 }
 
 #idle_inhibitor.activated {
-    color: #2d3436;
 }
 
 #mpd {
