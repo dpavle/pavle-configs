@@ -97,7 +97,7 @@ alias vim="nvim" # replace regular vim with neovim
 ############################################ PATH changes ############################################
 ######################################################################################################
 
-path+=('~/.local/bin')
+path+=("$HOME/.local/bin")
 
 # /opt/*-tools
 path+=('/opt/ondemand-tools' '/opt/ssh-tools' '/opt/azdo-tools')
