@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+#
+# power-menu
+#
+# A power menu script for usage with fuzzel.
+#
+
+FUZZEL_CONFIG="$HOME/.config/fuzzel/power-menu.ini"
+
+options=(
+  "󰌾    Lock"
+  "    Shutdown"
+  "    Reboot"
+  "󰍃    Logout"
+  "󰤁    Hibernate"
+  "󰤄    Suspend"
+)
+
+sel=$(printf '%s\n' "${options[@]}" | fuzzel --dmenu --config "$FUZZEL_CONFIG")
+case "$sel" in
+  0) swaylock;;
+  1) systemctl poweroff;;
+  2) systemctl reboot;;
+  3) loginctl terminate-session "$XDG_SESSION_ID";;
+  4) systemctl hibernate;;
+  5) systemctl suspend;;
+esac
