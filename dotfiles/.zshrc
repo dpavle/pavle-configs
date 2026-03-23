@@ -169,3 +169,5 @@ fi
 
 # https://taskwarrior.org/
 [[ -n $(which task 2>/dev/null) ]] && task list
+
+export COLORTERM=truecolor
