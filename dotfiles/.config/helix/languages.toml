@@ -14,3 +14,7 @@ args = ["--stdio"]
 [language-server.yaml-language-server.config.yaml]
 format = { enable = true }
 validation = true
+
+[[language]]
+name = "sql"
+file-types = ["sql", { glob = "*.sql.j2"}]
