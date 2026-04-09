@@ -1,4 +1,6 @@
 
+# ---- Python --------------------------------------------------------------
+
 [[language]]
 name = "python"
 language-servers = ["ty"]
@@ -7,14 +9,92 @@ language-servers = ["ty"]
 command = "ty"
 args = ["server"]
 
+[language-server.azure-pipelines-language-server]
+command = "azure-pipelines-language-server"
+args = ["--stdio"]
+
+# --------------------------------------------------------------------------
+
+# ---- YAML ----------------------------------------------------------------
+
 [language-server.ansible-language-server]
 command = "ansible-language-server"
 args = ["--stdio"]
+
+[language-server.yaml-schema-router]
+command = "yaml-schema-router"
+
+[language-server.yaml-language-server.config.yaml.schemas]
+#"file:///home/pavle/.azure-devops/custom-yaml-schema.json" = [
+#"https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json" = [
+#  "**azure_pipelines/**",
+#  "**/.azuredevops/**"
+#]
+"https://raw.githubusercontent.com/compose-spec/compose-go/master/schema/compose-spec.json" = [
+  "compose.ya?ml",
+  "docker-compose.ya?ml",
+  "/manifests/*.ya?ml",
+]
 
 [language-server.yaml-language-server.config.yaml]
 format = { enable = true }
 validation = true
 
+[language-server.yaml-language-server.config.rules]
+indentation = { spaces = "consistent" }
+
+[language-server.docker-compose-language-server]
+command = "docker-compose-langserver"
+args = ["--stdio"]
+
+[[language]]
+name = "yaml"
+language-servers = [
+  "yaml-language-server",
+  "ansible-language-server",
+  "azure-pipelines-language-server",
+  "docker-compose-language-server"
+]
+file-types = [
+  "yml",
+  "yaml",
+  { glob = "azure_pipelines/**/*.yml"},
+  { glob = ".azuredevops/**/*.yml" },
+  { glob = "templates/{jobs?,steps,stages}/*.yml" },
+  { glob = "{group,host}_vars/**"}
+]
+
+[[language]]
+name = "helm"
+file-types = []
+
+# --------------------------------------------------------------------------
+
+# ---- SQL -----------------------------------------------------------------
+
 [[language]]
 name = "sql"
 file-types = ["sql", { glob = "*.sql.j2"}]
+
+# --------------------------------------------------------------------------
+
+# ---- Markdown ------------------------------------------------------------
+
+[[language]]
+name = "markdown"
+language-servers = [ "mdpls" ]
+
+[language-server.mdpls]
+command = "mdpls"
+config = { markdown.preview.auto = true }
+
+# --------------------------------------------------------------------------
+
+# ---- HCL -----------------------------------------------------------------
+
+[[language]]
+name = "hcl"
+auto-format = false
+
+# --------------------------------------------------------------------------
+

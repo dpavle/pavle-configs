@@ -1,5 +1,4 @@
-#theme = "gruber-darker"
-theme = "ao"
+theme = "dark_plus"
 
 [editor]
 bufferline = "always"
@@ -10,3 +9,6 @@ hidden = false
 [editor.inline-diagnostics]
 cursor-line = "hint"
 #other-lines = "error"
+
+[keys.normal.space]
+x = ":toggle whitespace.render all none"
