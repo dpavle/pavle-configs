@@ -1,13 +1,7 @@
-# This is default and very simple configuration file for Yasb.
-# For more information about configuration options, please visit the Wiki https://github.com/amnweb/yasb/wiki
 watch_stylesheet: true
 watch_config: true
 debug: false
 update_check: true # Enable automatic update check.
-komorebi:
-  start_command: "komorebic start --whkd"
-  stop_command: "komorebic stop --whkd"
-  reload_command: "komorebic stop --whkd && komorebic start --whkd"
 bars:
   primary-bar:
     enabled: true
@@ -15,13 +9,11 @@ bars:
     class_name: "yasb-bar"
     alignment:
       position: "top"
-      center: false
     animation:
       enabled: true
       duration: 1000
     blur_effect:
       enabled: false
-      acrylic: false
       dark_mode: false
       round_corners: false
       round_corners_type: "normal"
@@ -74,11 +66,6 @@ widgets:
           "resize",
           "pause"
         ]
-        container_padding:
-          top: 0
-          left: 0
-          bottom: 0
-          right: 0
         callbacks:
           on_left: "next_binding_mode"
           on_middle: "toggle_label"
@@ -102,41 +89,18 @@ widgets:
           alias: "\uf025"
       callbacks:
         on_left: "exec cmd.exe /c start ms-settings:bluetooth"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
-
-
     # By default binding mode names are fetched from GlazeWM and "display_name" option takes priority over "name".
   glazewm_tiling_direction:
     type: "glazewm.tiling_direction.GlazewmTilingDirectionWidget"
     options:
       horizontal_label: "\udb81\udce1"
       vertical_label: "\udb81\udce2"
-      btn_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   glazewm_workspaces:
     type: "glazewm.workspaces.GlazewmWorkspacesWidget"
     options:
       offline_label: "GlazeWM Offline"
-      hide_empty_workspaces: true
       hide_if_offline: false
       enable_scroll_switching: true
-      btn_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
-      container_padding:
-        top: 0
-        left: 4
-        bottom: 0
-        right: 4
   battery:
     type: "yasb.battery.BatteryWidget"
     options:
@@ -162,11 +126,6 @@ widgets:
         icon_medium: "\uf242"
         icon_high: "\uf241"
         icon_full: "\uf240"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   home:
     type: "yasb.home.HomeWidget"
     options:
@@ -235,11 +194,6 @@ widgets:
         pause: "\ue769"
         prev_track: "\ue892"
         next_track: "\ue893"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   active_window:
     type: "yasb.active_window.ActiveWindowWidget"
     options:
@@ -270,12 +224,6 @@ widgets:
       label_zero_index: false
       hide_empty_workspaces: false
       hide_if_offline: true
-      animation: true
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
   komorebi_active_layout:
     type: "komorebi.active_layout.ActiveLayoutWidget"
     options:
@@ -305,11 +253,6 @@ widgets:
         maximized: "MAX"
         floating: "FLOATING"
         paused: "PAUSED"
-      container_padding:
-        top: 0
-        left: 8
-        bottom: 0
-        right: 8
       callbacks:
         on_left: "next_layout"
         on_middle: "toggle_monocle"
@@ -335,11 +278,6 @@ widgets:
         offset_left: 0
         show_layout_icon: true
         layout_icon: "\uf11c"
-      label_shadow:
-        enabled: true
-        color: "black"
-        radius: 3
-        offset: [ 1, 1 ]
   volume:
     type: "yasb.volume.VolumeWidget"
     options:
