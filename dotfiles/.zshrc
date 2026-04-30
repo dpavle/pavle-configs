@@ -77,6 +77,40 @@ function genstr() {
   echo ''
 }
 
+# Override the default ssh command to dynamically rename the Tmux window
+ssh() {
+  if [ -n "$TMUX" ]; then
+    # Loop through arguments to find the target host (first non-flag argument)
+    for arg in "$@"; do
+      if [[ "$arg" != -* ]]; then
+        if [[ "$arg" == *@* ]]; then
+          host="${arg#*@}"  # extract host from user@host
+        else
+          host="$arg"
+        fi
+        break
+      fi
+    done
+    # Save the local hostname to restore later
+    original_window_name="$(tmux display-message -p -F '#{window_name}')"
+
+    # Strip any trailing junk or whitespace
+    host="$(echo "$host" | cut -d' ' -f1)"
+
+    # Rename the Tmux window to the SSH target
+    [ -n "$host" ] && tmux rename-window "$host"
+
+    # Run the actual SSH command
+    command ssh "$@"
+
+    # Restore the original window name after logout
+    tmux rename-window "$original_window_name"
+  else
+    # Not in Tmux — just run ssh normally
+    command ssh "$@"
+  fi
+}
+
 ######################################################################################################
 ############################################ User aliases ############################################
 ######################################################################################################
