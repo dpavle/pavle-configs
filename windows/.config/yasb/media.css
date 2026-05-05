@@ -1,0 +1,165 @@
+/* media-menu */
+.media-menu {
+  min-width: 360px;
+  max-width: 360px;
+  min-height: 200px;
+  max-height: 200px;
+  background-color: rgba(17, 17, 27, 0.75);
+}
+
+.media-menu .title,
+.media-menu .artist,
+.media-menu .source {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 10px;
+  font-family: 'Segoe UI';
+}
+
+.media-menu .artist {
+  font-size: 12px;
+  color: #6c7086;
+}
+
+.media-menu .source {}
+
+.media-menu .btn {
+  font-family: "Segoe Fluent Icons";
+  font-size: 14px;
+  font-weight: 400;
+  margin: 10px 2px 0px 2px;
+  min-width: 40px;
+  max-width: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  border-radius: 20px;
+}
+
+.media-menu .btn.prev {
+  margin-left: 10px;
+}
+
+.media-menu .btn:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.media-menu .btn.play {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 20px
+}
+
+.media-menu .btn.disabled:hover,
+.media-menu .btn.disabled {
+  color: #4e525c;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.media-menu .playback-time {
+  font-size: 13px;
+  font-family: 'Segoe UI';
+  color: #7f849c;
+  margin-top: 20px;
+  min-width: 100px;
+}
+
+.media-menu .progress-slider {
+  height: 10px;
+  margin: 5px 4px;
+  border-radius: 3px;
+}
+
+/*.media-menu .progress-slider::groove {
+    background: transparent;
+    height: 4px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+
+}
+.media-menu .progress-slider::groove:hover {
+    background: transparent;
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.2);
+}*/
+.media-menu .progress-slider::sub-page {
+  background: white;
+  border-radius: 3px;
+  height: 4px;
+}
+
+/*.media-menu .app-volume-container {
+    padding: 4px;
+    border-radius: 8px;
+    margin-left: 24px;
+    border: dotted
+}
+.media-menu .app-volume-container .volume-slider::groove {
+    background: rgba(255, 255, 255, 0.1);
+    width: 4px;
+    border-radius: 3px;
+}
+.media-menu .app-volume-container .volume-slider::add-page {
+    background: white;
+    border-radius: 3px;
+}
+.media-menu .app-volume-container .volume-slider::groove:hover {
+    background: rgba(255, 255, 255, 0.1);
+    width: 6px;
+    border-radius: 3px;
+}
+.media-menu .app-volume-container .volume-slider::sub-page {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}*/
+
+.media-menu .app-volume-container .mute-button,
+.media-menu .app-volume-container .unmute-button {
+  font-size: 16px;
+  color: var(--text);
+  font-family: "Segoe Fluent Icons";
+  padding-left: 3.5px;
+}
+
+.media-menu .app-volume-container .unmute-button {
+  color: #a0a0a0;
+}
+
+/* media widget */
+.media-widget {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
+
+.media-widget .label {
+  color: #bac2db;
+  padding: 0px;
+  padding-right: 4px;
+  font-size: 12px;
+}
+
+.media-widget .btn {
+  color: #7a7f8b;
+  padding: 0 4px;
+  margin: 0;
+  font-family: "JetBrainsMono NFP";
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.media-widget .btn:hover {
+  color: #babfd3;
+}
+
+.media-widget .btn.play {
+  font-size: 24px;
+  color: #989caa;
+}
+
+.media-widget .btn.disabled:hover,
+.media-widget .btn.disabled {
+  color: #4e525c;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: 20px;
+}
