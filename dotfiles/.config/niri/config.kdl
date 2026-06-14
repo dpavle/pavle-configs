@@ -4,7 +4,7 @@
 // https://yalter.github.io/niri/Configuration:-Introduction
 
 switch-events {
-  lid-close { spawn "swaylock"; }
+  lid-close { spawn "~/.config/niri/niri-wallpaper.sh" "--lock"; }
 }
 
 gestures {
@@ -285,10 +285,16 @@ spawn-at-startup "waybar"
 spawn-at-startup "/usr/libexec/polkit-mate-authentication-agent-1"
 
 // Idle lock
-spawn-sh-at-startup "swayidle -w timeout 180 'swaylock'"
+spawn-sh-at-startup "swayidle -w timeout 180 '~/.config/niri/niri-wallpaper.sh --lock'"
 
 // Set wallpaper
-spawn-sh-at-startup "swaybg -i ~/Downloads/wallpapers/newjeans/nwjns22.jpg"
+spawn-sh-at-startup "~/.config/niri/niri-wallpaper.sh"
+
+spawn-at-startup "awww-daemon"
+layer-rule {
+    match namespace="^awww-daemon$"
+    place-within-backdrop true
+}
 
 // Niri + Cosmic
 //spawn-at-startup "cosmic-ext-alternative-startup"
@@ -401,7 +407,7 @@ binds {
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Mod+B hotkey-overlay-title="Run Browser: Firefox" { spawn "firefox"; }
     Mod+F hotkey-overlay-title="Run file manager: PCManFM" { spawn "pcmanfm"; }
-    Ctrl+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Ctrl+Mod+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "~/.config/niri/niri-wallpaper.sh" "--lock"; }
 
     // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
